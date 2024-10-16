@@ -18,10 +18,10 @@ def auction_menu():
         elif choice == "2":
             # view_auctions()
             pass
-        elif choice == "2":
+        elif choice == "3":
             # update_auction()
             pass
-        elif choice == "2":
+        elif choice == "4":
             # delete_auction()
             pass
         else:

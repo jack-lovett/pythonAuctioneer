@@ -18,10 +18,10 @@ def order_menu():
         elif choice == "2":
             # view_orders()
             pass
-        elif choice == "2":
+        elif choice == "3":
             # update_order()
             pass
-        elif choice == "2":
+        elif choice == "4":
             # delete_order()
             pass
         else:

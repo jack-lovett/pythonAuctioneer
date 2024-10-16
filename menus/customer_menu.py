@@ -18,10 +18,10 @@ def customer_menu():
         elif choice == "2":
             # view_customers()
             pass
-        elif choice == "2":
+        elif choice == "3":
             # update_customer()
             pass
-        elif choice == "2":
+        elif choice == "4":
             # delete_customer()
             pass
         else:
