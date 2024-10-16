@@ -1,6 +1,9 @@
 """Main file."""
 
 from menus.card_menu import card_menu
+from menus.auction_menu import auction_menu
+from menus.customer_menu import customer_menu
+from menus.order_menu import order_menu
 
 print("Welcome to MTG Auction System")
 MENU = """== Main Menu ==
@@ -19,14 +22,11 @@ def main():
         if choice == "1":
             card_menu()
         elif choice == "2":
-            # manage_auctions()
-            pass
+            auction_menu()
         elif choice == "3":
-            # manage_customers()
-            pass
+            customer_menu()
         elif choice == "4":
-            # manage_orders()
-            pass
+            order_menu()
         elif choice == "5":
             # manage_invoices_and_payments()
             pass
