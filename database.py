@@ -1,6 +1,7 @@
 import os
 import sqlite3
 
+
 class DatabaseManager:
     def __init__(self, database_name="mtg_auction.db"):
         self.database_name = database_name
@@ -19,6 +20,11 @@ class DatabaseManager:
             self.connect()
         return self.conn
 
+    def close(self):
+        """Close the connection."""
+        if self.conn:
+            self.conn.close()
+            print("Database connection closed.")
 
 # Connect to SQLite (this will create the database if it doesn't exist)
 # conn = sqlite3.connect('mtg_auction.db')
