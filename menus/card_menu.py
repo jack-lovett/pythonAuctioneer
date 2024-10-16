@@ -1,9 +1,9 @@
 """Manage cards"""
 
-MENU = ("\nCard Management\n"
-        "1. Add a card\n"
-        "2. List cards\n"
-        "3. Back to main menu")
+MENU = """Card Management
+1. Add a card
+2. List cards
+3. Back to main menu"""
 
 
 def card_menu():

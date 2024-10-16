@@ -1,11 +1,11 @@
 """Manage auctions"""
 
-MENU = ("\nAuction Management\n"
-        "1. Create auction\n"
-        "2. View all auctions\n"
-        "3. Update auction\n"
-        "4. Delete auction\n"
-        "5. Back to main menu")
+MENU = """Auction Management
+1. Create auction
+2. View all auctions
+3. Update auction
+4. Delete auction
+5. Back to main menu"""
 
 
 def auction_menu():

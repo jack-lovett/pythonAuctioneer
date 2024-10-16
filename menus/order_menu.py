@@ -1,11 +1,11 @@
 """Manage orders"""
 
-MENU = ("\nOrder Management\n"
-        "1. Create order\n"
-        "2. View all orders\n"
-        "3. Update order\n"
-        "4. Delete order\n"
-        "5. Back to main menu")
+MENU = """Order Management
+1. Create order
+2. View all orders
+3. Update order
+4. Delete order
+5. Back to main menu"""
 
 
 def order_menu():

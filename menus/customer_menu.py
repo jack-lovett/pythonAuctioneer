@@ -1,11 +1,11 @@
 """Manage customers"""
 
-MENU = ("\nCustomer Management\n"
-        "1. Create customer\n"
-        "2. View all customers\n"
-        "3. Update customer\n"
-        "4. Delete customer\n"
-        "5. Back to main menu")
+MENU = """Customer Management
+1. Create customer
+2. View all customers
+3. Update customer
+4. Delete customer
+5. Back to main menu"""
 
 
 def customer_menu():
