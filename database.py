@@ -26,6 +26,10 @@ class DatabaseManager:
             self.conn.close()
             print("Database connection closed.")
 
+
+# Reusable instance
+database_manager = DatabaseManager()
+
 # Connect to SQLite (this will create the database if it doesn't exist)
 # conn = sqlite3.connect('mtg_auction.db')
 # cursor = conn.cursor()
