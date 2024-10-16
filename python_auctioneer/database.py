@@ -3,7 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from python_auctioneer.config import DATABASE_URL
-from python_auctioneer.models.base import Base
+from python_auctioneer.models import Base
 
 # Create the SQLAlchemy engine
 engine = create_engine(DATABASE_URL)
