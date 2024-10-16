@@ -27,6 +27,7 @@ def get_db():
 
 # Initialise the database
 def init_db():
+    # Import all models to ensure they are registered properly on the metadata
     from python_auctioneer.models import (
         card_finish, card_condition, card, auction, customer, order, invoice, bank_transaction, shipping_method
     )
