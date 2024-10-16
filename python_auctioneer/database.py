@@ -27,5 +27,7 @@ def get_db():
 
 # Initialise the database
 def init_db():
-    # from python_auctioneer.models import Card
+    from python_auctioneer.models import (
+        card_finish, card_condition, card, auction, customer, order, invoice, bank_transaction, shipping_method
+    )
     Base.metadata.create_all(bind=engine)
