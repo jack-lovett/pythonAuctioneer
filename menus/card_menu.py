@@ -6,7 +6,7 @@ MENU = ("\nCard Management\n"
         "3. Back to main menu")
 
 
-def manage_cards():
+def card_menu():
     print(MENU)
     choice = input(">> ")
     while choice != "3":

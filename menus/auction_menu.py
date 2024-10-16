@@ -8,7 +8,7 @@ MENU = ("\nAuction Management\n"
         "5. Back to main menu")
 
 
-def manage_cards():
+def auction_menu():
     print(MENU)
     choice = input(">> ")
     while choice != "5":
