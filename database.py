@@ -1,9 +1,17 @@
+import os
 import sqlite3
 
 class DatabaseManager:
     def __init__(self, database_name="mtg_auction.db"):
         self.database_name = database_name
         self.conn = None
+
+    def connect(self):
+        """Establish a connection to the database."""
+        if not os.path.exists(self.database_name):
+            print("Database not found. Creating a new one.")
+        self.conn = sqlite3.connect(self.database_name)
+        print("Connected to database.")
 
 
 # Connect to SQLite (this will create the database if it doesn't exist)
