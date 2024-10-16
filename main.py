@@ -4,6 +4,7 @@ from menus.card_menu import card_menu
 from menus.auction_menu import auction_menu
 from menus.customer_menu import customer_menu
 from menus.order_menu import order_menu
+from menus.invoice_and_payment_menu import invoice_and_payment_menu
 
 print("Welcome to MTG Auction System")
 MENU = """== Main Menu ==
@@ -28,8 +29,7 @@ def main():
         elif choice == "4":
             order_menu()
         elif choice == "5":
-            # manage_invoices_and_payments()
-            pass
+            invoice_and_payment_menu()
         else:
             print("Invalid choice")
         print(MENU)
