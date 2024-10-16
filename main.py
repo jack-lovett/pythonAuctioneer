@@ -2,12 +2,13 @@
 
 from menus.card_menu import card_menu
 
-MENU = """\nWelcome to MTG Auction System\n
-1. Manage cards\n
-2. Manage auctions\n
-3. Manage customers\n
-4. Manage orders\n
-5. Manage invoices and payments\n
+print("Welcome to MTG Auction System")
+MENU = """== Main Menu ==
+1. Manage cards
+2. Manage auctions
+3. Manage customers
+4. Manage orders
+5. Manage invoices and payments
 6. Exit"""
 
 
