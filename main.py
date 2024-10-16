@@ -31,7 +31,7 @@ def main():
             # manage_invoices_and_payments()
             pass
         else:
-            "Invalid choice"
+            print("Invalid choice")
         print(MENU)
         choice = input(">> ")
     print("Exiting program. Goodbye!")
