@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float
-from python_auctioneer.models.base import Base
+from python_auctioneer.models import Base
 
 
 class CardCondition(Base):
