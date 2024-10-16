@@ -1,6 +1,6 @@
 """Main file"""
 
-from manage_cards import manage_cards
+from menus.card_menu import card_menu
 
 MENU = """\nWelcome to MTG Auction System\n
 1. Manage cards\n
@@ -16,7 +16,7 @@ def main():
     choice = input(">> ")
     while choice != "6":
         if choice == "1":
-            manage_cards()
+            card_menu()
         elif choice == "2":
             # manage_auctions()
             pass
