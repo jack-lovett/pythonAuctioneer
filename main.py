@@ -1,4 +1,4 @@
-"""Main file"""
+"""Main file."""
 
 from menus.card_menu import card_menu
 

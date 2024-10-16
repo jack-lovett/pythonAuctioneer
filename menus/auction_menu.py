@@ -1,4 +1,4 @@
-"""Manage auctions"""
+"""Manage auctions menu."""
 
 MENU = """Auction Management
 1. Create auction

@@ -1,4 +1,4 @@
-"""Manage orders"""
+"""Manage orders menu."""
 
 MENU = """Order Management
 1. Create order

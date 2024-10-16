@@ -1,4 +1,4 @@
-"""Manage customers"""
+"""Manage customers menu."""
 
 MENU = """Customer Management
 1. Create customer
