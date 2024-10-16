@@ -13,6 +13,12 @@ class DatabaseManager:
         self.conn = sqlite3.connect(self.database_name)
         print("Connected to database.")
 
+    def get_connection(self):
+        """Return the active connection."""
+        if self.conn is None:
+            self.connect()
+        return self.conn
+
 
 # Connect to SQLite (this will create the database if it doesn't exist)
 # conn = sqlite3.connect('mtg_auction.db')
