@@ -10,6 +10,7 @@ MENU = """Invoice Management
 
 
 def invoice_and_payment_menu():
+    """Invoice and payment menu."""
     print(MENU)
     choice = input(">> ")
     while choice != "6":

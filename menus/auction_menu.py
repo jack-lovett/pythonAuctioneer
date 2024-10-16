@@ -9,6 +9,7 @@ MENU = """Auction Management
 
 
 def auction_menu():
+    """Auction menu."""
     print(MENU)
     choice = input(">> ")
     while choice != "5":

@@ -9,6 +9,7 @@ MENU = """Order Management
 
 
 def order_menu():
+    """Order menu."""
     print(MENU)
     choice = input(">> ")
     while choice != "5":

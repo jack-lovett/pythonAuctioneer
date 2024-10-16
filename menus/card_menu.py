@@ -7,6 +7,7 @@ MENU = """Card Management
 
 
 def card_menu():
+    """Card menu."""
     print(MENU)
     choice = input(">> ")
     while choice != "3":
