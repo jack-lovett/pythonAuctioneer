@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Boolean, Text, DateTime
+from sqlalchemy import Column, Integer, String, Text, DateTime, CheckConstraint
 from sqlalchemy.orm import relationship
 from python_auctioneer.models import Base
 
@@ -10,7 +10,7 @@ class Auction(Base):
     auction_description = Column(Text)
     auction_open_time = Column(DateTime, nullable=False)
     auction_close_time = Column(DateTime, nullable=False)
-    auction_is_active = Column(Boolean, default=True)
+    auction_status = Column(String, CheckConstraint("auction_status IN ('active', 'completed')"), default='active')
 
     # Add owner and manager id if this functionality is added
 
