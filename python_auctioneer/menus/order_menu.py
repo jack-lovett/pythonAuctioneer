@@ -5,14 +5,17 @@ MENU = """Order Management
 2. View all orders
 3. Update order
 4. Delete order
-5. Back to main menu"""
+5. Update shipping costs
+6. Back to main menu"""
 
 
 def order_menu():
     """Order menu."""
+    database = SessionLocal()
+
     print(MENU)
     choice = input(">> ")
-    while choice != "5":
+    while choice != "6":
         if choice == "1":
             # create_order()
             pass
