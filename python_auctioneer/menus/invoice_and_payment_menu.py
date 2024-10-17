@@ -1,4 +1,8 @@
 """Manage invoice and payment menu."""
+import datetime
+from database import SessionLocal
+from python_auctioneer.services.invoice import create_invoice_service
+
 
 MENU = """Invoice Management
 1. Create invoice
@@ -11,11 +15,12 @@ MENU = """Invoice Management
 
 def invoice_and_payment_menu():
     """Invoice and payment menu."""
+    database = SessionLocal()
     print(MENU)
     choice = input(">> ")
     while choice != "6":
         if choice == "1":
-            # create_invoice()
+            create_invoice(database)
             pass
         elif choice == "2":
             # view_invoices()
@@ -33,3 +38,20 @@ def invoice_and_payment_menu():
             print("Invalid choice.")
         print(MENU)
         choice = input(">> ")
+
+def create_invoice(database):
+    try:
+        invoice_date_issued_str = input("Enter the invoice issue date DD/MM/YYYY: ")
+        invoice_order_id = input("Enter the order id: ")
+
+        # Convert input strings to datetime objects
+        invoice_date_issued = datetime.datetime.strptime(invoice_date_issued_str, '%d/%m/%Y')
+
+        invoice_data = {
+            "invoice_date_issued": invoice_date_issued,
+            "invoice_order_id": invoice_order_id,
+        }
+
+        create_invoice_service(database, invoice_data)
+    except ValueError as e:
+        print(f"Error: {e}")
