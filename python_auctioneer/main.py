@@ -1,6 +1,7 @@
 """Main file."""
-
-from python_auctioneer.menus import card_menu
+import os
+import platform
+from python_auctioneer.menus.card_menu import card_menu
 from python_auctioneer.menus.auction_menu import auction_menu
 from python_auctioneer.menus.customer_menu import customer_menu
 from python_auctioneer.menus.order_menu import order_menu
@@ -32,9 +33,18 @@ def main():
             invoice_and_payment_menu()
         else:
             print("Invalid choice")
+        clear_console()
         print(MENU)
         choice = input(">> ")
     print("Exiting program. Goodbye!")
 
+
+def clear_console():
+    """Clear the console screen."""
+    system = platform.system()
+    if system == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 main()
