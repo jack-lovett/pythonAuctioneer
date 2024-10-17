@@ -49,13 +49,13 @@ def add_card_finish(database):
     try:
         card_finishes = [
             {
-                "card_finish_type": "non-foil",
+                "finish_name": "non-foil",
             },
             {
-                "card_finish_type": "foil",
+                "finish_name": "foil",
             },
             {
-                "card_finish_type": "etched-foil",
+                "finish_name": "etched-foil",
             }
         ]
 
