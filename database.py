@@ -2,8 +2,8 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from python_auctioneer.config import DATABASE_URL
 from python_auctioneer.models import Base
+from config import DATABASE_URL
 
 # Create the SQLAlchemy engine
 engine = create_engine(DATABASE_URL)
@@ -27,8 +27,4 @@ def get_db():
 
 # Initialise the database
 def init_db():
-    # Import all models to ensure they are registered properly on the metadata
-    from python_auctioneer.models import (
-        card_finish, card_condition, card, auction, customer, order, invoice, bank_transaction, shipping_method
-    )
     Base.metadata.create_all(bind=engine)
