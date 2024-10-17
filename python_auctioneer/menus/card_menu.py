@@ -45,19 +45,18 @@ def import_cards_from_csv_menu():
         print(f"Error importing cards: {e}")
 
 
-def add_card_finish(database):
-    try:
-        card_finishes = [
-            {
-                "finish_name": "non-foil",
-            },
-            {
-                "finish_name": "foil",
-            },
-            {
-                "finish_name": "etched-foil",
-            }
-        ]
+def fill_card_finishes(database):
+    card_finishes = [
+        {
+            "finish_name": "normal",
+        },
+        {
+            "finish_name": "foil",
+        },
+        {
+            "finish_name": "etched",
+        }
+    ]
 
         for card_finish in card_finishes:
             create_card_finish_service(database, card_finish)
