@@ -11,8 +11,7 @@ class Order(Base):
     order_shipping_id = Column(Integer, ForeignKey("shipping_methods.shipping_id"))
     order_tracking_reference = Column(String)
     order_status = Column(String, CheckConstraint("order_status IN ('pending', 'fulfilled')"), default="pending")
-    order_invoice_id = Column(Integer, ForeignKey("invoices.invoice_id"))
 
     customer = relationship("Customer")
     shipping_method = relationship("ShippingMethod")
-    invoice = relationship("Invoice")
+    invoice = relationship("Invoice", back_populates="order")
