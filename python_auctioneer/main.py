@@ -3,8 +3,8 @@
 from python_auctioneer.menus import card_menu
 from python_auctioneer.menus.auction_menu import auction_menu
 from python_auctioneer.menus.customer_menu import customer_menu
-from python_auctioneer.menus import order_menu
-from python_auctioneer.menus import invoice_and_payment_menu
+from python_auctioneer.menus.order_menu import order_menu
+from python_auctioneer.menus.invoice_and_payment_menu import invoice_and_payment_menu
 
 print("Welcome to MTG Auction System")
 MENU = """== Main Menu ==
