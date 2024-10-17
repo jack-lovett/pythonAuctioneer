@@ -1,7 +1,9 @@
 """Manage invoice and payment menu."""
 import datetime
 from database import SessionLocal
-from python_auctioneer.services.invoice import create_invoice_service
+from python_auctioneer.services.invoice import create_invoice_service, get_invoice_service
+from tabulate import tabulate
+
 
 
 MENU = """Invoice Management
@@ -21,10 +23,8 @@ def invoice_and_payment_menu():
     while choice != "6":
         if choice == "1":
             create_invoice(database)
-            pass
         elif choice == "2":
-            # view_invoices()
-            pass
+            view_invoices(get_invoice_service(database))
         elif choice == "3":
             # update_invoice()
             pass
@@ -55,3 +55,19 @@ def create_invoice(database):
         create_invoice_service(database, invoice_data)
     except ValueError as e:
         print(f"Error: {e}")
+
+def view_invoices(invoices):
+    """Print a formatted table of invoices."""
+    if not invoices:
+        print("No invoices found.")
+    else:
+        headers = ["Invoice ID", "Invoice Date Issued", "Invoice Paid Status", "Invoice Order ID"]
+        table_data = []
+        for invoice in invoices:
+            table_data.append([
+                invoice.invoice_id,
+                invoice.invoice_date_issued.strftime("%Y-%m-%d %H:%M:%S"),
+                invoice.invoice_paid_status,
+                invoice.invoice_order_id,
+            ])
+        print(tabulate(table_data, headers=headers, tablefmt="grid"))
