@@ -1,5 +1,5 @@
 from python_auctioneer.models import Invoice
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 
 def create_invoice_service(database, invoice_data):
@@ -13,3 +13,12 @@ def create_invoice_service(database, invoice_data):
     except IntegrityError as e:
         database.rollback()
         raise ValueError(f"Error creating invoice: {e}")
+
+
+def get_invoice_service(database):
+    """View all invoices."""
+    try:
+        return database.query(Invoice).all()
+    except SQLAlchemyError as e:
+        print(f"Error viewing auctions: {e}")
+        return []
