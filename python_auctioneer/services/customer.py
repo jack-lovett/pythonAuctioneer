@@ -15,3 +15,11 @@ def create_customer_service(database, customer_data):
         database.rollback()
         raise ValueError(f"Error creating customer: {e}")
 
+
+def get_customer_service(database):
+    """View all customers."""
+    try:
+        return database.query(Customer).all()
+    except SQLAlchemyError as e:
+        print(f"Error viewing customers: {e}")
+        return []
