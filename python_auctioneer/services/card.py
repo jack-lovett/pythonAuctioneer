@@ -1,31 +1,48 @@
+import csv
+
 from sqlalchemy.exc import IntegrityError
 import pandas as pd
+
+from database import SessionLocal
+from python_auctioneer.services.card_finish import get_card_finish_service
 from python_auctioneer.models.card import Card
+from python_auctioneer.services.card_condition import get_card_condition_service
 
 
-def import_cards_from_csv(database, file_path):
+def import_cards_from_csv(csv_file_path):
+    database = SessionLocal()
+
     try:
-        df = pd.read_csv(file_path)
-    except FileNotFoundError:
-        raise ValueError(f"File not found: {file_path}")
+        with open(csv_file_path, mode='r', encoding='utf-8') as csvfile:
+            csvreader = csv.DictReader(csvfile)
 
-    required_columns = ["Name", "Scryfall ID", "Purchase price"]
+            for row in csvreader:
+                # Fetch condition and finish instances by name
+                condition = get_card_condition_service(database, row["Condition"])
+                finish_status = "foil" if row["Foil"] == "foil" else "nonfoil"
+                finish = get_card_finish_service(database, finish_status)
 
-    for column in required_columns:
-        if column not in df.columns:
-            raise ValueError(f"Missing required column: {column}")
+                if condition and finish:
+                    card_data = {
+                        "card_name": row["Name"],
+                        "card_scryfall_id": row["Scryfall ID"],
+                        "card_purchase_price": float(row["Purchase price"]),
+                        "card_condition_id": condition.condition_id,
+                        "card_finish_id": finish.finish_id
+                        # You can add additional fields here if necessary
+                    }
+                    add_card_service(database, card_data)
+                else:
+                    print(f"Skipping card '{row['Name']}', condition or finish not found.")
 
-    for _, row in df.iterrows():
-        card_data = {
-            "card_scryfall_id": row["Scryfall ID"],
-            "card_name": row["Name"],
-            "card_purchase_price": row.get("Purchase price", 0.0),
-            "card_initial_price": row.get("Purchase price", 0.0),
-        }
-        add_card_to_database(database, card_data)
+    except Exception as e:
+        database.rollback()
+        print(f"Error importing cards from CSV: {e}")
+    finally:
+        database.close()
 
 
-def add_card_to_database(database, card_data):
+def add_card_service(database, card_data):
     try:
         new_card = Card(**card_data)
         database.add(new_card)

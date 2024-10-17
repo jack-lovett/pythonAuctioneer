@@ -10,4 +10,4 @@ class CardFinish(Base):
     finish_id = Column(Integer, primary_key=True, autoincrement=True)
     finish_name = Column(String, unique=True, nullable=False)
 
-    cards = relationship("Card", back_populates="finish")
+    cards = relationship("Card", back_populates="card_finish")

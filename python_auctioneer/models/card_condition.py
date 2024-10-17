@@ -11,4 +11,4 @@ class CardCondition(Base):
     condition_name = Column(String, unique=True, nullable=False)
     condition_discount_percentage = Column(Float)
 
-    cards = relationship("Card", back_populates="condition")
+    cards = relationship("Card", back_populates="card_condition")

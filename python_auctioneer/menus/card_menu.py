@@ -39,7 +39,7 @@ def import_cards_from_csv_menu():
     file_path = input("Enter the path to the CSV file: ")
     database = SessionLocal()
     try:
-        import_cards_from_csv(database, file_path)
+        import_cards_from_csv(file_path)
         print("Cards imported successfully.")
     except Exception as e:
         print(f"Error importing cards: {e}")
@@ -63,3 +63,4 @@ def add_card_finish(database):
             create_card_finish_service(database, card_finish)
     except ValueError as e:
         print(f"Error: {e}")
+
