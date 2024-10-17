@@ -18,7 +18,7 @@ def create_auction_service(database: Session, auction_data: dict) -> Auction:
         raise ValueError(f"Error creating auction: {e}")
 
 
-def view_auctions_service(database):
+def get_auctions_service(database):
     """View all auctions."""
     try:
         return database.query(Auction).all()
