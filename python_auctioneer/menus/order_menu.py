@@ -1,3 +1,7 @@
+from database import SessionLocal
+from python_auctioneer.services.shipping_method import add_shipping_method_service
+from python_auctioneer.services.order import create_order_service
+
 """Manage orders menu."""
 
 MENU = """Order Management
@@ -17,8 +21,7 @@ def order_menu():
     choice = input(">> ")
     while choice != "6":
         if choice == "1":
-            # create_order()
-            pass
+            create_order(database)
         elif choice == "2":
             # view_orders()
             pass
@@ -28,7 +31,45 @@ def order_menu():
         elif choice == "4":
             # delete_order()
             pass
+        elif choice == "5":
+            update_shipping_table(database)
         else:
             print("Invalid choice.")
         print(MENU)
         choice = input(">> ")
+
+def create_order(database):
+    try:
+        order_customer_id = input("Enter the customer id: ")
+
+        order_data = {
+            "order_customer_id": order_customer_id,
+        }
+
+        create_order_service(database, order_data)
+
+    except ValueError as e:
+        print(f"Error: {e}")
+
+def update_shipping_table(database):
+    try:
+        shipping_methods = [
+            {
+                "shipping_type": "standard",
+                "shipping_cost": 2.00,
+            },
+            {
+                "shipping_type": "tracked",
+                "shipping_cost": 3.00,
+            },
+            {
+                "shipping_type": "express",
+                "shipping_cost": 4.00,
+            }
+        ]
+
+        for shipping_method in shipping_methods:
+            add_shipping_method_service(database, shipping_method)
+
+    except ValueError as e:
+        print(f"Error: {e}")
