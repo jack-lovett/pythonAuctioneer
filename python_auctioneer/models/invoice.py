@@ -10,5 +10,3 @@ class Invoice(Base):
     invoice_date_issued = Column(DateTime, default=func.now())
     invoice_paid_status = Column(String, CheckConstraint("invoice_paid_status IN ('paid', 'unpaid', 'overdue')"),
                                  default="unpaid")
-    invoice_shipping_status = Column(String, CheckConstraint("invoice_shipping_status IN ('shipped', 'not shipped')"),
-                                     default="not shipped")
