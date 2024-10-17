@@ -19,8 +19,7 @@ def import_cards_from_csv(csv_file_path):
             for row in csvreader:
                 # Fetch condition and finish instances by name
                 condition = get_card_condition_service(database, row["Condition"])
-                finish_status = "foil" if row["Foil"] == "foil" else "nonfoil"
-                finish = get_card_finish_service(database, finish_status)
+                finish = get_card_finish_service(database, row["Foil"])
 
                 if condition and finish:
                     card_data = {
