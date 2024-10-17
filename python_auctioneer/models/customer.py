@@ -6,5 +6,6 @@ class Customer(Base):
     __tablename__ = "customers"
 
     customer_id = Column(Integer, primary_key=True, autoincrement=True)
-    customer_name = Column(String, nullable=False)
+    customer_firstname = Column(String, nullable=False)
+    customer_lastname = Column(String, nullable=False)
     customer_address = Column(String, nullable=False)
