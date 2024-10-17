@@ -1,6 +1,8 @@
 """Main file."""
 import os
 import platform
+
+from python_auctioneer.database import init_db
 from python_auctioneer.menus.card_menu import card_menu
 from python_auctioneer.menus.auction_menu import auction_menu
 from python_auctioneer.menus.customer_menu import customer_menu
@@ -18,6 +20,9 @@ MENU = """== Main Menu ==
 
 
 def main():
+    # Initialise the database
+    init_db()
+
     print(MENU)
     choice = input(">> ")
     while choice != "6":
