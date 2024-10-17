@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from python_auctioneer.models.auction import Auction
 
 
@@ -16,3 +16,12 @@ def create_auction_service(database: Session, auction_data: dict) -> Auction:
     except IntegrityError as e:
         database.rollback()
         raise ValueError(f"Error creating auction: {e}")
+
+
+def view_auctions_service(database):
+    """View all auctions."""
+    try:
+        return database.query(Auction).all()
+    except SQLAlchemyError as e:
+        print(f"Error viewing auctions: {e}")
+        return []
