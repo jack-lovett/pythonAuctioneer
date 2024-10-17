@@ -2,7 +2,7 @@
 import os
 import platform
 
-from python_auctioneer.database import init_db
+from database import init_db
 from python_auctioneer.menus.card_menu import card_menu
 from python_auctioneer.menus.auction_menu import auction_menu
 from python_auctioneer.menus.customer_menu import customer_menu
@@ -51,5 +51,6 @@ def clear_console():
         os.system("cls")
     else:
         os.system("clear")
+
 
 main()
