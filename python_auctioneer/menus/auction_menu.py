@@ -2,7 +2,8 @@
 
 import datetime
 from python_auctioneer.database import SessionLocal
-from python_auctioneer.services.auction import create_auction_service
+from python_auctioneer.services.auction import create_auction_service, get_auctions_service
+from tabulate import tabulate
 
 MENU = """Auction Management
 1. Create auction
@@ -21,8 +22,7 @@ def auction_menu():
         if choice == "1":
             create_auction(database)
         elif choice == "2":
-            # view_auctions()
-            pass
+            display_auctions(get_auctions_service(database))
         elif choice == "3":
             # update_auction()
             pass
@@ -55,3 +55,21 @@ def create_auction(database):
     except ValueError as e:
         print(f"Error: {e}")
         print("Invalid date format. Please use DD/MM/YYYY.")
+
+
+def display_auctions(auctions):
+    """Print a formatted table of auctions."""
+    if not auctions:
+        print("No auctions found.")
+    else:
+        headers = ["Auction ID", "Description", "Open Time", "Close Time", "Is Active"]
+        table_data = []
+        for auction in auctions:
+            table_data.append([
+                auction.auction_id,
+                auction.auction_description,
+                auction.auction_open_time.strftime("%Y-%m-%d %H:%M:%S"),
+                auction.auction_close_time.strftime("%Y-%m-%d %H:%M:%S"),
+                "Yes" if auction.auction_is_active else "No"
+            ])
+        print(tabulate(table_data, headers=headers, tablefmt="grid"))
