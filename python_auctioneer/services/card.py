@@ -41,6 +41,7 @@ def import_cards_from_csv(csv_file_path):
     finally:
         database.close()
 
+
 def add_card_service(database, card_data):
     try:
         new_card = Card(**card_data)
