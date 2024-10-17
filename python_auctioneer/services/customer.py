@@ -1,4 +1,3 @@
-from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from python_auctioneer.models.customer import Customer
 

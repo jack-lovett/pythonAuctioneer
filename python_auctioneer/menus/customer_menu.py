@@ -1,8 +1,7 @@
 """Manage customers menu."""
 
-from python_auctioneer.database import SessionLocal
-from python_auctioneer.services.customer import create_customer_service, get_customer_service
-from tabulate import tabulate
+from database import SessionLocal
+from python_auctioneer.services.customer import create_customer_service
 
 MENU = """Customer Management
 1. Create customer
