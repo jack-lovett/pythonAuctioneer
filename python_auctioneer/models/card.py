@@ -21,5 +21,5 @@ class Card(Base):
 
     card_finish = relationship("CardFinish")
     card_condition = relationship("CardCondition")
-    auction = relationship("Auction")
+    auction = relationship("Auction", back_populates="cards")
     order = relationship("Order")
