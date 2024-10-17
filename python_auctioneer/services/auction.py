@@ -3,10 +3,8 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from python_auctioneer.models.auction import Auction
 
 
-def create_auction_service(database: Session, auction_data: dict) -> Auction:
-    """
-    Service function to create a new auction.
-    """
+def create_auction_service(database, auction_data):
+    """Create new auction."""
     try:
         new_auction = Auction(**auction_data)
         database.add(new_auction)
