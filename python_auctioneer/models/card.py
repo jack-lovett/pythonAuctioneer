@@ -19,7 +19,7 @@ class Card(Base):
     card_order_id = Column(Integer, ForeignKey("orders.order_id"))
     card_times_on_auction = Column(Integer, default=0)
 
-    card_finish = relationship("CardFinish")
-    card_condition = relationship("CardCondition")
+    card_finish = relationship("CardFinish", back_populates="cards")
+    card_condition = relationship("CardCondition", back_populates="cards")
     auction = relationship("Auction", back_populates="cards")
     order = relationship("Order")
