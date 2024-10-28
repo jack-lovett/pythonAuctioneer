@@ -1,10 +1,13 @@
 """Manage cards"""
 
 import pandas as pd
+from tabulate import tabulate
+
 from database import SessionLocal
-from python_auctioneer.services.card import import_cards_from_csv  # Make sure to import your service function
-from python_auctioneer.services.card_condition import create_card_condition_service
-from python_auctioneer.services.card_finish import create_card_finish_service
+from python_auctioneer.services.card import import_cards_from_csv, \
+    get_cards_service
+from python_auctioneer.services.card_condition import create_card_condition_service, get_card_condition_service
+from python_auctioneer.services.card_finish import create_card_finish_service, get_card_finish_service
 
 MENU = """Card Management
 1. Add Card list
@@ -25,8 +28,7 @@ def card_menu():
             # add_card()
             pass
         elif choice == "2":
-            # list_cards()
-            pass
+            display_cards(database)
         elif choice == "3":
             import_cards_from_csv_menu()
         elif choice == "4":
@@ -39,9 +41,28 @@ def card_menu():
         choice = input(">> ")
 
 
+def display_cards(database):
+    cards = get_cards_service(database)
+    if not cards:
+        print("No cards found.")
+    else:
+        headers = ["Card ID", "Card Name", "Card Initial Price", "Card Finish", "Card Condition"]
+        table_data = []
+        for card in cards:
+            card_finish = get_card_finish_service(database, card.card_finish_id).finish_name
+            card_condition = get_card_condition_service(database, card.card_condition_id).condition_name
+            table_data.append([
+                card.card_id,
+                card.card_name,
+                card.card_initial_price,
+                card_finish,
+                card_condition,
+            ])
+        print(tabulate(table_data, headers=headers, tablefmt="grid"))
+
+
 def import_cards_from_csv_menu():
     file_path = input("Enter the path to the CSV file: ")
-    database = SessionLocal()
     try:
         import_cards_from_csv(file_path)
         print("Cards imported successfully.")
@@ -97,6 +118,6 @@ def fill_card_conditions(database):
             "condition_discount_percentage": 0.3,
         }
     ]
-    
+
     for condition_attribute in condition_attributes:
         create_card_condition_service(database, condition_attribute)
