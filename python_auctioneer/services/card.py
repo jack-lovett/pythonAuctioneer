@@ -50,3 +50,7 @@ def add_card_service(database, card_data):
     except IntegrityError as e:
         database.rollback()
         raise ValueError(f"Error adding card: {e}")
+
+def get_cards_service(database):
+    cards = database.query(Card).all()
+    return cards
