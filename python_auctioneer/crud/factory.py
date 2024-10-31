@@ -7,15 +7,15 @@ def create_crud_class(model_class):
 
     return GenericCRUD
 
-from .auction import Auction
-from .bank_transaction import BankTransaction
-from .card import Card
-from .card_condition import CardCondition
-from .card_finish import CardFinish
-from .customer import Customer
-from .invoice import Invoice
-from .order import Order
-from .shipping_method import ShippingMethod
+from ..models.auction import Auction
+from ..models.bank_transaction import BankTransaction
+from ..models.card import Card
+from ..models.card_condition import CardCondition
+from ..models.card_finish import CardFinish
+from ..models.customer import Customer
+from ..models.invoice import Invoice
+from ..models.order import Order
+from ..models.shipping_method import ShippingMethod
 
 model_classes = [Auction, BankTransaction, Card, CardCondition, CardFinish, Customer, Invoice, Order, ShippingMethod]
 
