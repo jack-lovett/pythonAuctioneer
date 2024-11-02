@@ -102,8 +102,18 @@ def update_auction(database):
         print("Invalid date format. Please use DD/MM/YYYY.")
         return
 
-    update_auction_service(database, auction_id, new_description, new_open_time, new_close_time)
-    print("Auction updated successfully.")
+    auction_data = {
+        "auction_id": auction.auction_id,
+        "auction_description": new_description,
+        "auction_open_time": new_open_time,
+        "auction_close_time": new_close_time
+    }
+
+    success = auction_service.update(database, auction_id, auction_data)
+    if success:
+        print("Auction updated successfully.")
+    else:
+        print("Auction update failed.")
 
 
 def delete_auction(database):
