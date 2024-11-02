@@ -3,7 +3,7 @@ from python_auctioneer.models import Base
 
 
 class Customer(Base):
-    __tablename__ = "customers"
+    __tablename__ = "customer"
 
     customer_id = Column(Integer, primary_key=True, autoincrement=True)
     customer_firstname = Column(String, nullable=False)

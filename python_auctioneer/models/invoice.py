@@ -5,12 +5,12 @@ from python_auctioneer.models import Base
 
 
 class Invoice(Base):
-    __tablename__ = "invoices"
+    __tablename__ = "invoice"
 
     invoice_id = Column(Integer, primary_key=True, autoincrement=True)
     invoice_date_issued = Column(DateTime, default=func.now())
     invoice_paid_status = Column(String, CheckConstraint("invoice_paid_status IN ('paid', 'unpaid', 'overdue')"),
                                  default="unpaid")
-    invoice_order_id = Column(Integer, ForeignKey("orders.order_id"), nullable=False)
+    invoice_order_id = Column(Integer, ForeignKey("order.order_id"), nullable=False)
 
     order = relationship("Order", back_populates="invoice")
