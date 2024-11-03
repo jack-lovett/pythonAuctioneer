@@ -6,8 +6,8 @@ from tabulate import tabulate
 from database import SessionLocal
 from python_auctioneer.services.card import import_cards_from_csv, \
     get_cards_service
-from python_auctioneer.services.card_condition import create_card_condition_service, get_card_condition_service
-from python_auctioneer.services.card_finish import create_card_finish_service, get_card_finish_service
+from python_auctioneer.services.condition import create_card_condition_service, get_card_condition_service
+from python_auctioneer.services.finish import create_card_finish_service, get_card_finish_service
 
 MENU = """Card Management
 1. Add Card list

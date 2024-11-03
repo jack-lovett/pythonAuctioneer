@@ -1,5 +1,5 @@
 from database import SessionLocal
-from python_auctioneer.services.shipping_method import add_shipping_method_service
+from python_auctioneer.services.shipping import add_shipping_method_service
 from python_auctioneer.services.order import create_order_service
 
 """Manage orders menu."""

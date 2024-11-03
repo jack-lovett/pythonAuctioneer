@@ -4,9 +4,9 @@ from sqlalchemy.exc import IntegrityError
 import pandas as pd
 
 from database import SessionLocal
-from python_auctioneer.services.card_finish import get_card_finish_service
+from python_auctioneer.services.finish import get_card_finish_service
 from python_auctioneer.models.card import Card
-from python_auctioneer.services.card_condition import get_card_condition_service
+from python_auctioneer.services.condition import get_card_condition_service
 
 
 def import_cards_from_csv(csv_file_path):

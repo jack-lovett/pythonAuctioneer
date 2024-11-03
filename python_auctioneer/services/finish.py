@@ -1,5 +1,5 @@
 from sqlalchemy.exc import IntegrityError
-from python_auctioneer.models.card_finish import Finish
+from python_auctioneer.models.finish import Finish
 
 def get_card_finish_service(database, finish_id):
     return database.query(Finish).filter(Finish.finish_id == finish_id).first()

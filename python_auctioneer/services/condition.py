@@ -1,8 +1,8 @@
-from python_auctioneer.models.card_condition import CardCondition
+from python_auctioneer.models.condition import Condition
 
 
 def get_card_condition_service(database, condition_id):
-    return database.query(CardCondition).filter(CardCondition.condition_id == condition_id).first()
+    return database.query(Condition).filter(Condition.condition_id == condition_id).first()
 
 
 def create_card_condition_service(database, condition_data):
