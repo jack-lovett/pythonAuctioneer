@@ -1,4 +1,6 @@
-from python_auctioneer.models import Card
+import csv
+
+from python_auctioneer.crud.factory import CRUDCard
 from python_auctioneer.services.base import BaseService
 from python_auctioneer.services.condition import ConditionService
 from python_auctioneer.services.finish import FinishService
@@ -6,7 +8,7 @@ from python_auctioneer.services.finish import FinishService
 
 class CardService(BaseService):
     def __init__(self):
-        super().__init__(Card())
+        super().__init__(CRUDCard())
 
     def import_cards_from_csv(self, database, csv_file_path):
 
