@@ -4,10 +4,9 @@ import pandas as pd
 from tabulate import tabulate
 
 from database import SessionLocal
-from python_auctioneer.services.card import import_cards_from_csv, \
-    get_cards_service
-from python_auctioneer.services.condition import create_card_condition_service, get_card_condition_service
-from python_auctioneer.services.finish import create_card_finish_service, get_card_finish_service
+from python_auctioneer.services.card import CardService
+from python_auctioneer.services.condition import ConditionService
+from python_auctioneer.services.finish import FinishService
 
 MENU = """Card Management
 1. Add Card list
@@ -32,9 +31,9 @@ def card_menu():
         elif choice == "3":
             import_cards_from_csv_menu()
         elif choice == "4":
-            fill_card_finishes(database)
+            fill_finishes(database)
         elif choice == "5":
-            fill_card_conditions(database)
+            fill_conditions(database)
         else:
             print("Invalid choice.")
         print(MENU)
@@ -42,15 +41,18 @@ def card_menu():
 
 
 def display_cards(database):
-    cards = get_cards_service(database)
+    card_service = CardService()
+    cards = card_service.get_all(database)
     if not cards:
         print("No cards found.")
     else:
         headers = ["Card ID", "Card Name", "Card Initial Price", "Card Finish", "Card Condition"]
         table_data = []
+        finish_service = FinishService()
+        condition_service = ConditionService()
         for card in cards:
-            card_finish = get_card_finish_service(database, card.card_finish_id).finish_name
-            card_condition = get_card_condition_service(database, card.card_condition_id).condition_name
+            card_finish = finish_service.get_by_id(database, card.card_finish_id).finish_name
+            card_condition = condition_service.get_by_id(database, card.card_condition_id).condition_name
             table_data.append([
                 card.card_id,
                 card.card_name,
@@ -64,14 +66,15 @@ def display_cards(database):
 def import_cards_from_csv_menu():
     file_path = input("Enter the path to the CSV file: ")
     try:
-        import_cards_from_csv(file_path)
+        card_service = CardService()
+        card_service.import_cards_from_csv(file_path)
         print("Cards imported successfully.")
     except Exception as e:
         print(f"Error importing cards: {e}")
 
 
-def fill_card_finishes(database):
-    card_finishes = [
+def fill_finishes(database):
+    finishes = [
         {
             "finish_name": "normal",
         },
@@ -83,12 +86,13 @@ def fill_card_finishes(database):
         }
     ]
 
-    for card_finish in card_finishes:
-        create_card_finish_service(database, card_finish)
+    finish_service = FinishService()
+    for finish in finishes:
+        finish_service.create(database, finish)
 
 
-def fill_card_conditions(database):
-    condition_attributes = [
+def fill_conditions(database):
+    conditions = [
         {
             "condition_name": "mint",
             "condition_discount_percentage": 0.00,
@@ -119,5 +123,7 @@ def fill_card_conditions(database):
         }
     ]
 
-    for condition_attribute in condition_attributes:
-        create_card_condition_service(database, condition_attribute)
+    condition_service = ConditionService()
+
+    for condition in conditions:
+        condition_service.create(database, condition)
