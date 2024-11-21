@@ -4,7 +4,7 @@ from python_auctioneer.models import Base
 
 
 class Card(Base):
-    __tablename__ = "cards"
+    __tablename__ = "card"
 
     card_id = Column(Integer, primary_key=True, autoincrement=True)
     card_scryfall_id = Column(String, nullable=False)
@@ -13,13 +13,13 @@ class Card(Base):
     card_purchase_price = Column(Float)
     card_lot_number = Column(Integer)
     card_caption = Column(String)
-    card_finish_id = Column(Integer, ForeignKey("card_finishes.finish_id"))
-    card_condition_id = Column(Integer, ForeignKey("card_conditions.condition_id"))
-    card_auction_id = Column(Integer, ForeignKey("auctions.auction_id"))
-    card_order_id = Column(Integer, ForeignKey("orders.order_id"))
+    card_finish_id = Column(Integer, ForeignKey("finish.finish_id"))
+    card_condition_id = Column(Integer, ForeignKey("condition.condition_id"))
+    card_auction_id = Column(Integer, ForeignKey("auction.auction_id"))
+    card_order_id = Column(Integer, ForeignKey("order.order_id"))
     card_times_on_auction = Column(Integer, default=0)
 
-    card_finish = relationship("CardFinish", back_populates="cards")
-    card_condition = relationship("CardCondition", back_populates="cards")
+    finish = relationship("Finish", back_populates="cards")
+    condition = relationship("Condition", back_populates="cards")
     auction = relationship("Auction", back_populates="cards")
     order = relationship("Order")

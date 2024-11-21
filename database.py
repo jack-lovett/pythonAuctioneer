@@ -1,4 +1,5 @@
 """Database manager."""
+from contextlib import contextmanager
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -13,7 +14,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 # Dependency to get a SQLAlchemy session
-def get_db():
+@contextmanager
+def get_database():
     database = SessionLocal()
     try:
         yield database

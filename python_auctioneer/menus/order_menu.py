@@ -1,6 +1,6 @@
 from database import SessionLocal
-from python_auctioneer.services.shipping_method import add_shipping_method_service
-from python_auctioneer.services.order import create_order_service
+from python_auctioneer.services.shipping import ShippingService
+from python_auctioneer.services.order import OrderService
 
 """Manage orders menu."""
 
@@ -46,7 +46,8 @@ def create_order(database):
             "order_customer_id": order_customer_id,
         }
 
-        create_order_service(database, order_data)
+        order_service = OrderService()
+        order_service.create(database, order_data)
 
     except ValueError as e:
         print(f"Error: {e}")
@@ -68,8 +69,9 @@ def update_shipping_table(database):
             }
         ]
 
+        shipping_service = ShippingService()
         for shipping_method in shipping_methods:
-            add_shipping_method_service(database, shipping_method)
+            shipping_service.create(database, shipping_method)
 
     except ValueError as e:
         print(f"Error: {e}")

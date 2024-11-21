@@ -1,7 +1,7 @@
 """Manage invoice and payment menu."""
 import datetime
 from database import SessionLocal
-from python_auctioneer.services.invoice import create_invoice_service, get_invoice_service
+from python_auctioneer.services.invoice import InvoiceService
 from tabulate import tabulate
 
 
@@ -51,8 +51,8 @@ def create_invoice(database):
             "invoice_date_issued": invoice_date_issued,
             "invoice_order_id": invoice_order_id,
         }
-
-        create_invoice_service(database, invoice_data)
+        invoice_service = InvoiceService()
+        invoice_service.create(database, invoice_data)
     except ValueError as e:
         print(f"Error: {e}")
 

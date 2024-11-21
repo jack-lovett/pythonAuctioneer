@@ -1,7 +1,7 @@
 """Manage customers menu."""
 
 from database import SessionLocal
-from python_auctioneer.services.customer import create_customer_service
+from python_auctioneer.services.customer import CustomerService
 
 MENU = """Customer Management
 1. Create customer
@@ -45,7 +45,7 @@ def create_customer(database):
             "customer_lastname": customer_lastname,
             "customer_address": customer_address,
         }
-
-        create_customer_service(database, customer_data)
+        customer_service = CustomerService()
+        customer_service.create(database, customer_data)
     except ValueError as e:
         print(f"Error: {e}")

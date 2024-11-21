@@ -4,7 +4,7 @@ from python_auctioneer.models import Base
 
 
 class Auction(Base):
-    __tablename__ = "auctions"
+    __tablename__ = "auction"
 
     auction_id = Column(Integer, primary_key=True, autoincrement=True)
     auction_description = Column(Text)
