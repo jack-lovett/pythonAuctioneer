@@ -1,6 +1,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
 <nav>
+    <h1>AUCTIONEER</h1>
     <ul>
-        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.path == url_for('index') else '' }}">Home</a></li>
+        <li><a href="{{ url_for('auctions') }}" class="{{ 'active' if request.path == url_for('auctions') else '' }}">Auctions</a></li>
+        <li><a href="{{ url_for('orders') }}" class="{{ 'active' if request.path == url_for('orders') else '' }}">Orders</a></li>
+        <li><a href="{{ url_for('reconcile') }}" class="{{ 'active' if request.path == url_for('reconcile') else '' }}">Reconcile</a></li>
+        <li><a href="{{ url_for('pricer') }}" class="{{ 'active' if request.path == url_for('pricer') else '' }}">Pricer</a></li>
     </ul>
 </nav>
